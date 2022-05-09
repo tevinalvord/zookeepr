@@ -117,6 +117,17 @@
         "hungry"
       ],
       "id": "11"
+    },
+    {
+      "name": "Tevibear",
+      "species": "Bear",
+      "diet": "Everything",
+      "personalityTraits": [
+        "hungry",
+        "tired",
+        "thirsty"
+      ],
+      "id": "12"
     }
   ]
 }
