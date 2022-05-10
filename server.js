@@ -7,6 +7,8 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 // parse incoming JSON data
 app.use(express.json());
+// instruct server to make ceertain files redily available and to not gate it behind a server endpoint
+app.use(express.static('public'));
 const { animals } = require('./data/animals');
 
 function filterByQuery(query, animalsArray) {
@@ -110,6 +112,22 @@ app.post('/api/animals', (req, res) => {
         const animal = createNewAnimal(req.body, animals);
         res.json(animal);
     }
+});
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
+app.get('/animals', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/animals.html'));
+});
+
+app.get('/zookeepers', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/zookeepers.html'));
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
 });
 
 app.listen(PORT, () => {
